@@ -12,7 +12,7 @@ export class CommandProcessor {
         const message = event['content']['body'].trim().toLowerCase();
         const query = message.substring("!abstract ".length);
 
-        let url = "http://api.duckduckgo.com/?format=json&q=";
+        let url = "https://api.duckduckgo.com/?format=json&q=";
 
         try {
             if (query === "help") {
@@ -27,9 +27,10 @@ export class CommandProcessor {
                 {
                     method: 'get',
                     headers: {
-                        "Accept": "application/json"
-                    }, 
-                    url
+                        "Accept": "application/json",
+                        "User-Agent": "matrix-bot-abstract"
+                    },
+                    url: `${url}${encodeURIComponent(query)}`
                 })
                 .then((response) => {
                     if (!response.data) return this.sendHtmlReply(roomId, event, `Error processing data`);
