@@ -45,17 +45,17 @@ export class CommandProcessor {
                             content = abstractBody.AbstractText as string;
                             if (abstractBody.AbstractURL) {
                                 url = abstractBody.AbstractURL as string;
-                                content = `${url}\n${content}`;
+                                content = `${url}<br/>${content}`;
                             } 
                         } else if (topic && !/\/c\//.test(topic.FirstURL)) {
-                            content = topic.Text as string;
+                            content = `<b>${topic.Text as string}</b><br/>`;
                             url = topic.FirstURL as string;
-                            content = `${url}\n${content}`;
+                            content = `${url}<br/>${content}`;
                         } else if (abstractBody.Definition) {
                             content = abstractBody.Definition as string;
                             if (abstractBody.DefinitionURL) {
                                 url = abstractBody.DefinitionURL as string;
-                                content = `${url}\n${content}`;
+                                content = `${url}<br/>${content}`;
                             }
                         } else {
                             content = `Nothing found for the abstract <code>${query}</code>`
